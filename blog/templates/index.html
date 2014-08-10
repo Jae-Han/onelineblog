@@ -1,0 +1,43 @@
+<html>
+  <head>
+  <title>test</title>
+  <link rel="stylesheet" href="{{ STATIC_URL }}styles/blog.css" type="text/css" />
+  </head>
+  <body>
+    <div id="header"> <!-- Start of header -->
+      <h2>One Line Blog</h2>
+    </div><!-- End of header -->
+    <div id="writer"> <!-- Start of writer -->
+      <div>
+        {% if message %}<p><strong>{{ message }}</strong></p>{% endif %}
+      </div>
+      <form action="/blog/submit/" method="post">
+        {% csrf_token %}
+        <input type="text" max-length=200 style="width:500px;" name="content"/>
+        <input type="submit" value="Submit"/>
+      </form>
+    </div><!-- End of writer -->
+    <div>
+      {% if all_articles %}
+      <table>
+        <tr>
+          <th>No.</th>
+          <th width="300px">Content</th>
+          <th>Date</th>
+          <th>Delete</th>
+        </tr>
+        {% for article in all_articles %}
+        <tr>
+          <td>{{ article.id }}</td>
+          <td>{{ article.content }}</td>
+          <td>{{ article.written_date }}</td>
+          <td align='center'><a href="/blog/{{ article.id }}/remove">[x]</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% else %}
+      <p>No articles available</p>
+      {% endif %}
+    </div>
+  </body>
+</html>

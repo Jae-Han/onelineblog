@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  background-color: #black;
+  padding: 5px;
+}
+
+#header {
+  height: 50px;
+  background-color: #black;
+  padding: 5px;
+}
+#writer {
+  height: 80px;
+  border-bottom: 1px;
+  solid: #CCC;
+  padding: 5px;
+}
